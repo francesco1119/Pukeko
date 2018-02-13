@@ -6,7 +6,7 @@
 How to Install
 ======
 
-1) `pip install os re argparse sys glob python-magic textract colorama`
+1) `pip install argparse glob python-magic textract colorama`
 
 #### Troubleshooting:
 
