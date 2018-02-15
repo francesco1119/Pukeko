@@ -30,3 +30,5 @@ On spare time my TODO list is:
 * add option `-site` to create wordlists from a target website
 * add option `Leet` (or `1337`), also known as `eleet` or `leetspeak` (so many passwords are week because of  [leetspeak](https://optimwise.com/passwords-with-simple-character-substitution-are-weak/) )
 * add multilanguage (`pip install alphabet-detector`)
+* add highlight HotWord in string
+
