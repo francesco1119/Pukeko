@@ -22,7 +22,7 @@ Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '
 
 Have a look at my YouTube presentatoin (under construction)
 
-[![IMAGE ALT TEXT HERE](http://www.doc.govt.nz/pagefiles/33465/pukeko-565.jpg)](https://www.youtube.com/watch?v=gXWXVH_Xl74&ab_channel=NickMoore)
+[![IMAGE ALT TEXT HERE](http://www.doc.govt.nz/pagefiles/33465/pukeko-565.jpg)](https://youtu.be/CD1zNNGDrUQ)
 
 Future developent
 ------
