@@ -20,7 +20,7 @@ If the situation gets tragic open an issue and I will help you troubleshooting
 How to use it 
 ------
 
-Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'.`
+Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'.` plus any file that could be read by a command prompt
 
 Have a look at my YouTube presentatoin:
 
@@ -34,5 +34,6 @@ On spare time my TODO list is:
 * add option `-site` to create wordlists from a target website
 * add option `Leet` (or `1337`), also known as `eleet` or `leetspeak` (so many passwords are week because of  [leetspeak](https://optimwise.com/passwords-with-simple-character-substitution-are-weak/) )
 * add multilanguage (`pip install alphabet-detector`)
-* add highlight HotWord in string
+* add highlight HotWords in string
+* add e-mail to HotWords
 
