@@ -3,7 +3,7 @@
  
 ![alt text](http://www.gisbornespecials.co.nz/assets/ZOO/ZOO-Pukeko-800461.jpg)
 
-Tired of using `sort input.txt | uniq > output.txt` I wanted to create a cross OS script that could read any possible file take each word once and list them all in a word-list. 
+Tired of using `sort input.txt | uniq > output.txt` I wanted to create a cross OS script that could read any possible file, take each word once, and list them all in a word-list. 
 
 How to Install
 ======
