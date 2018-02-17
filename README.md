@@ -18,6 +18,8 @@ If the situation gets tragic open an issue and I will help you troubleshooting
 How to use it 
 ------
 
+Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'.`
+
 Have a look at my YouTube presentatoin (under construction)
 
 [![IMAGE ALT TEXT HERE](http://www.doc.govt.nz/pagefiles/33465/pukeko-565.jpg)](https://www.youtube.com/watch?v=gXWXVH_Xl74&ab_channel=NickMoore)
