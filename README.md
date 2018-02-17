@@ -3,6 +3,8 @@
  
 ![alt text](http://www.gisbornespecials.co.nz/assets/ZOO/ZOO-Pukeko-800461.jpg)
 
+Tired of using `sort input.txt | uniq > output.txt` I wanted to create a cross OS script that could read any possible file take each word once and list them all in a word-list. 
+
 How to Install
 ======
 
@@ -20,7 +22,7 @@ How to use it
 
 Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'.`
 
-Have a look at my YouTube presentatoin (under construction)
+Have a look at my YouTube presentatoin:
 
 [![IMAGE ALT TEXT HERE](https://github.com/francesco1119/Pukeko/blob/master/Capture.PNG?raw=true)](https://youtu.be/CD1zNNGDrUQ)
 
