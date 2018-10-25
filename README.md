@@ -5,7 +5,6 @@
 <a href="https://github.com/francesco1119/Pukeko/network"><img alt="network" src="https://img.shields.io/github/forks/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/stargazers"><img alt="stargazers" src="https://img.shields.io/github/stars/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/francesco1119/Pukeko.svg"></a>
-<a href="https://github.com/francesco1119/Pukeko"><img alt="pyversions" src="https://img.shields.io/pypi/pyversions/Pukeko.svg"></a>
 </p>
 </p>
 
