@@ -1,11 +1,11 @@
 <p align="center">
 <img alt="Fantail" src="http://www.gisbornespecials.co.nz/assets/ZOO/ZOO-Pukeko-800461.jpg" />
 <p align="center">
-<a href="https://github.com/francesco1119/Fantail/issues"><img alt="issues" src="https://img.shields.io/github/issues/francesco1119/Fantail.svg"></a>
-<a href="https://github.com/francesco1119/Fantail/network"><img alt="network" src="https://img.shields.io/github/forks/francesco1119/Fantail.svg"></a>
-<a href="https://github.com/francesco1119/Fantail/stargazers"><img alt="stargazers" src="https://img.shields.io/github/stars/francesco1119/Fantail.svg"></a>
-<a href="https://github.com/francesco1119/Fantail/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/francesco1119/Fantail.svg"></a>
-<a href="https://github.com/francesco1119/Fantail"><img alt="LICENSE" src="https://img.shields.io/pypi/pyversions/Fantail.svg"></a>
+<a href="https://github.com/francesco1119/Pukeko/issues"><img alt="issues" src="https://img.shields.io/github/issues/francesco1119/Pukeko.svg"></a>
+<a href="https://github.com/francesco1119/Pukeko/network"><img alt="network" src="https://img.shields.io/github/forks/francesco1119/Pukeko.svg"></a>
+<a href="https://github.com/francesco1119/Pukeko/stargazers"><img alt="stargazers" src="https://img.shields.io/github/stars/francesco1119/Pukeko.svg"></a>
+<a href="https://github.com/francesco1119/Pukeko/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/francesco1119/Pukeko.svg"></a>
+<a href="https://github.com/francesco1119/Pukeko"><img alt="pyversions" src="https://img.shields.io/pypi/pyversions/Pukeko.svg"></a>
 </p>
 </p>
 
