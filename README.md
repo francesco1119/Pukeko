@@ -33,7 +33,7 @@ If the situation gets tragic open an issue and I will help you troubleshooting
 How to use it 
 ------
 
-Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'.` plus any file that could be read by a command prompt
+Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'` plus any file identified as plain text by the system (e.g. `.py`, `.js`, `.xml`, shell scripts, config files, and other text-based formats).
 
 Have a look at my YouTube presentatoin:
 
