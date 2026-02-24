@@ -21,19 +21,38 @@ Tired of using `sort input.txt | uniq > output.txt` I wanted to create a cross O
 How to Install
 ======
 
-1) `pip install argparse glob python-magic textract colorama`
+1) `pip install python-magic textract colorama openai-whisper`
 
 #### Troubleshooting:
 
 - **python-magic:** as if the World wasn't complicated enough, there are 2 'Magic' libraries. You can find the right one [here on GitHub](https://github.com/ahupp/python-magic) or [here on pypi.python.org](https://pypi.python.org/pypi/python-magic/)
-- **textract:** this too is not easy to install, you can find detailed documentation [here on GitHub](https://github.com/deanmalmgren/textract) or on the [official website](https://textract.readthedocs.io/en/stable/index.html) or on the [formal pypi.python.org](https://pypi.python.org/pypi/textract) 
+- **textract:** this too is not easy to install, you can find detailed documentation [here on GitHub](https://github.com/deanmalmgren/textract) or on the [official website](https://textract.readthedocs.io/en/stable/index.html) or on the [formal pypi.python.org](https://pypi.python.org/pypi/textract)
+- **openai-whisper:** runs fully locally — no API key, no internet, no token limits. See the [GitHub repo](https://github.com/openai/whisper) for details. A GPU is optional but speeds up transcription significantly.
 
-If the situation gets tragic open an issue and I will help you troubleshooting 
+If the situation gets tragic open an issue and I will help you troubleshooting
 
-How to use it 
+How to use it
 ------
 
-Pukeko can currently parse: `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'` plus any file identified as plain text by the system (e.g. `.py`, `.js`, `.xml`, shell scripts, config files, and other text-based formats).
+Pukeko can currently parse:
+
+**Documents & images** (via `textract`): `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.msg', '.odt', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.xls', '.xlsx'`
+
+**Audio & video** (via `openai-whisper`, transcribed locally): `'.mp3', '.wav', '.ogg', '.flac', '.m4a', '.aac', '.wma', '.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.webm', '.m4v'`
+
+**Plain text files** (via `python-magic`): any file identified as plain text by the system, e.g. `.py`, `.js`, `.xml`, shell scripts, config files, and other text-based formats.
+
+The `-model` flag lets you choose the Whisper model size for audio/video transcription:
+
+| Model | Speed | Accuracy |
+|-------|-------|----------|
+| `tiny` | fastest | lowest |
+| `base` | fast | low |
+| `small` | balanced | good (default) |
+| `medium` | slow | very good |
+| `large` | slowest | best |
+
+Example: `python Pukeko.py -input /path/to/files -output wordlist.txt -model medium`
 
 Have a look at my YouTube presentatoin:
 

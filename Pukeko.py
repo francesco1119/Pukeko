@@ -7,6 +7,7 @@ import argparse
 import glob
 import magic
 import textract
+import whisper
 import colorama
 colorama.init()
 
@@ -51,17 +52,28 @@ HOT_WORDS = [
 	"confidential", "-----BEGIN",
 ]
 
-SUPPORTED_EXTENSIONS = (
+# Handled by textract (documents, images)
+TEXTRACT_EXTENSIONS = (
 	'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html',
-	'.jpeg', '.jpg', '.json', '.log', '.mp3', '.msg', '.odt', '.ogg',
+	'.jpeg', '.jpg', '.json', '.log', '.msg', '.odt',
 	'.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif',
-	'.tiff', '.tsv', '.txt', '.wav', '.xls', '.xlsx'
+	'.tiff', '.tsv', '.txt', '.xls', '.xlsx'
+)
+
+# Handled by Whisper (audio and video)
+AUDIO_VIDEO_EXTENSIONS = (
+	'.mp3', '.wav', '.ogg', '.flac', '.m4a', '.aac', '.wma',
+	'.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.webm', '.m4v'
 )
 
 
-def extract_text(path):
+def extract_text(path, whisper_model):
 	"""Extract text from a file. Returns string or None if unsupported."""
-	if path.lower().endswith(SUPPORTED_EXTENSIONS):
+	if path.lower().endswith(AUDIO_VIDEO_EXTENSIONS):
+		print(fg.MAGENTA, style.BRIGHT, "  transcribing...", style.RESET_ALL, end='\r')
+		result = whisper_model.transcribe(path)
+		return result['text']
+	elif path.lower().endswith(TEXTRACT_EXTENSIONS):
 		raw = textract.process(path)
 		return raw.strip().decode('utf-8')
 	elif "text" in magic.from_file(path, mime=True):
@@ -97,6 +109,8 @@ def main():
 	parser.add_argument('-hotwords', dest='hotwords', action='store_true', help="show rows that contains HotWords")
 	parser.add_argument('-min',      dest='min',      default=4, type=int, help="Minimum word length (by default is 4)", metavar=None)
 	parser.add_argument('-max',      dest='max',      default=20, type=int, help="Maximum word length (by default is 20)", metavar=None)
+	parser.add_argument('-model',    dest='model',    default='small', choices=['tiny', 'base', 'small', 'medium', 'large'],
+	                                                  help="Whisper model size for audio/video transcription (default: small)")
 
 	args = parser.parse_args()
 
@@ -105,6 +119,10 @@ def main():
 		sys.exit(1)
 
 	output = args.output
+
+	# Load Whisper model once
+	print(fg.BLUE, style.BRIGHT, "Loading Whisper model:", args.model, style.RESET_ALL)
+	whisper_model = whisper.load_model(args.model)
 
 	# Load existing wordlist into memory
 	wordset = set()
@@ -118,7 +136,7 @@ def main():
 	input_path = os.path.normpath(args.input)
 	for filepath in find_files(input_path):
 		try:
-			text = extract_text(filepath)
+			text = extract_text(filepath, whisper_model)
 			if text is None:
 				continue
 
