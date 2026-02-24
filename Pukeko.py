@@ -40,7 +40,16 @@ class style:
 	RESET_ALL = '\033[0m'
 
 
-HOT_WORDS = ["password", "admin", "S/N", "key", "administrator", "sysadmin"]
+HOT_WORDS = [
+	"password", "passwd", "passphrase", "passkey",
+	"admin", "administrator", "sysadmin",
+	"user", "login", "credentials", "auth", "2fa", "otp", "pin",
+	"key", "S/N", "api_key", "secret_key", "encryption_key", "client_secret",
+	"secret", "token", "bearer", "oauth",
+	"hash", "salt",
+	"ssn", "credit_card",
+	"confidential", "-----BEGIN",
+]
 
 SUPPORTED_EXTENSIONS = (
 	'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html',
