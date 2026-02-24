@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="Fantail" src="http://www.gisbornespecials.co.nz/assets/ZOO/ZOO-Pukeko-800461.jpg" />
+<img alt="Pukeko" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Australasian_swamphen_%28Porphyrio_melanotus%29_Tiritiri_Matangi.jpg/1920px-Australasian_swamphen_%28Porphyrio_melanotus%29_Tiritiri_Matangi.jpg" />
 <p align="center">
 <a href="https://github.com/francesco1119/Pukeko/issues"><img alt="issues" src="https://img.shields.io/github/issues/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/network"><img alt="network" src="https://img.shields.io/github/forks/francesco1119/Pukeko.svg"></a>
