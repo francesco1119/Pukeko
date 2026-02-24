@@ -18,10 +18,40 @@
 
 Tired of using `sort input.txt | uniq > output.txt` I wanted to create a cross OS script that could read any possible file, take each word once, and list them all in a word-list. 
 
+Requirements
+======
+
+#### Python packages (required)
+
+| Package | Purpose | Install |
+|---------|---------|---------|
+| `python-magic` | Detect plain text files by content | `pip install python-magic` |
+| `textract` | Extract text from documents and images | `pip install textract` |
+| `openai-whisper` | Transcribe audio and video locally | `pip install openai-whisper` |
+| `colorama` | Colour terminal output on all platforms | `pip install colorama` |
+
+Install all at once:
+```
+pip install python-magic textract openai-whisper colorama
+```
+
+#### System tools (required for certain file types)
+
+| Tool | Purpose | Without it |
+|------|---------|------------|
+| [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) | Extract text from images (`.jpg`, `.png`, `.gif`, `.tif`) | Images will be skipped |
+| [ffmpeg](https://ffmpeg.org/) | Decode audio and video for Whisper | Audio/video will not work |
+
+Pukeko will warn you at startup if any system tool is missing.
+
 How to Install
 ======
 
-1) `pip install python-magic textract colorama openai-whisper`
+1) `pip install python-magic textract openai-whisper colorama`
+
+2) Install [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) for image support
+
+3) Install [ffmpeg](https://ffmpeg.org/download.html) for audio/video support
 
 #### Troubleshooting:
 
