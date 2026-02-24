@@ -102,15 +102,39 @@ def check_hotwords(text, filepath):
 
 
 def main():
-	parser = argparse.ArgumentParser()
-	parser.add_argument('-input',    dest='input',    help="input a directory or a file", metavar=None)
-	parser.add_argument('-output',   dest='output',   help="output words into a file", metavar=None)
-	parser.add_argument('-print',    dest='show',     action='store_true', help="show what Pukeko is reading")
-	parser.add_argument('-hotwords', dest='hotwords', action='store_true', help="show rows that contains HotWords")
-	parser.add_argument('-min',      dest='min',      default=4, type=int, help="Minimum word length (by default is 4)", metavar=None)
-	parser.add_argument('-max',      dest='max',      default=20, type=int, help="Maximum word length (by default is 20)", metavar=None)
+	parser = argparse.ArgumentParser(
+		description=(
+			"Pukeko — tailored wordlist generator for breach assessment.\n"
+			"Scans a file or directory, extracts every unique word from all supported\n"
+			"formats, and saves a deduplicated, sorted wordlist. Use the resulting\n"
+			"wordlist to assess whether passwords or sensitive data were exposed in a leak.\n"
+		),
+		epilog=(
+			"supported formats:\n"
+			"  documents/images : .csv .doc .docx .eml .epub .gif .htm .html .jpeg .jpg\n"
+			"                     .json .log .msg .odt .pdf .png .pptx .ps .psv .rtf\n"
+			"                     .tff .tif .tiff .tsv .txt .xls .xlsx\n"
+			"  audio/video      : .mp3 .wav .ogg .flac .m4a .aac .wma\n"
+			"                     .mp4 .avi .mkv .mov .wmv .flv .webm .m4v\n"
+			"  plain text       : any file detected as plain text (scripts, configs, etc.)\n"
+			"\n"
+			"examples:\n"
+			"  python Pukeko.py -input /leak/dump -output wordlist.txt\n"
+			"  python Pukeko.py -input /leak/dump -output wordlist.txt -model medium\n"
+			"  python Pukeko.py -input /leak/dump -output wordlist.txt -hotwords\n"
+			"  python Pukeko.py -input /leak/dump -output wordlist.txt -min 6 -max 30\n"
+			"  python Pukeko.py -input document.pdf -output wordlist.txt -print\n"
+		),
+		formatter_class=argparse.RawDescriptionHelpFormatter
+	)
+	parser.add_argument('-input',    dest='input',    help="path to a file or directory to scan", metavar='PATH')
+	parser.add_argument('-output',   dest='output',   help="path to the output wordlist file", metavar='FILE')
+	parser.add_argument('-print',    dest='show',     action='store_true', help="print the extracted text of each file to stdout")
+	parser.add_argument('-hotwords', dest='hotwords', action='store_true', help="highlight lines containing sensitive keywords (passwords, tokens, keys, etc.)")
+	parser.add_argument('-min',      dest='min',      default=4, type=int, help="minimum word length to include (default: 4)", metavar='N')
+	parser.add_argument('-max',      dest='max',      default=20, type=int, help="maximum word length to include (default: 20)", metavar='N')
 	parser.add_argument('-model',    dest='model',    default='small', choices=['tiny', 'base', 'small', 'medium', 'large'],
-	                                                  help="Whisper model size for audio/video transcription (default: small)")
+	                                                  help="Whisper model for audio/video transcription: tiny/base/small(default)/medium/large")
 
 	args = parser.parse_args()
 
