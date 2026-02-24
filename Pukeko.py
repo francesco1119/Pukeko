@@ -3,13 +3,32 @@
 
 import os
 import sys
+import shutil
 import argparse
 import glob
-import magic
-import textract
-import whisper
-import colorama
-colorama.init()
+
+# Graceful imports — missing packages are reported by check_dependencies()
+try:
+	import magic
+except ImportError:
+	magic = None
+
+try:
+	import textract
+except ImportError:
+	textract = None
+
+try:
+	import whisper
+except ImportError:
+	whisper = None
+
+try:
+	import colorama
+	colorama.init()
+except ImportError:
+	colorama = None
+
 
 # Terminal color definitions
 class fg:
@@ -67,16 +86,52 @@ AUDIO_VIDEO_EXTENSIONS = (
 )
 
 
+def check_dependencies():
+	"""Check all required Python packages and system tools. Exit if anything critical is missing."""
+	errors   = []
+	warnings = []
+
+	# Python packages
+	if magic    is None: errors.append("  python-magic    →  pip install python-magic")
+	if textract is None: errors.append("  textract        →  pip install textract")
+	if whisper  is None: errors.append("  openai-whisper  →  pip install openai-whisper")
+	if colorama is None: errors.append("  colorama        →  pip install colorama")
+
+	# System tools
+	if shutil.which('tesseract') is None:
+		warnings.append("  tesseract not found — image OCR (.jpg .png .gif .tif etc.) will be skipped")
+	if shutil.which('ffmpeg') is None:
+		warnings.append("  ffmpeg not found — audio/video transcription will not work")
+
+	if errors:
+		print("[!] Missing required Python packages:")
+		for e in errors:
+			print(e)
+		print("\n    Install all at once:")
+		print("    pip install python-magic textract openai-whisper colorama\n")
+		sys.exit(1)
+
+	if warnings:
+		print("[!] Warning — missing system tools, some features will be limited:")
+		for w in warnings:
+			print(w)
+		print()
+
+
 def extract_text(path, whisper_model):
 	"""Extract text from a file. Returns string or None if unsupported."""
 	if path.lower().endswith(AUDIO_VIDEO_EXTENSIONS):
+		if whisper_model is None:
+			return None
 		print(fg.MAGENTA, style.BRIGHT, "  transcribing...", style.RESET_ALL, end='\r')
 		result = whisper_model.transcribe(path)
 		return result['text']
 	elif path.lower().endswith(TEXTRACT_EXTENSIONS):
+		if textract is None:
+			return None
 		raw = textract.process(path)
 		return raw.strip().decode('utf-8')
-	elif "text" in magic.from_file(path, mime=True):
+	elif magic is not None and "text" in magic.from_file(path, mime=True):
 		with open(path, "r", encoding='UTF8') as f:
 			return f.read()
 	return None
@@ -142,11 +197,16 @@ def main():
 		parser.print_help()
 		sys.exit(1)
 
+	# Run dependency check before doing anything else
+	check_dependencies()
+
 	output = args.output
 
 	# Load Whisper model once
-	print(fg.BLUE, style.BRIGHT, "Loading Whisper model:", args.model, style.RESET_ALL)
-	whisper_model = whisper.load_model(args.model)
+	whisper_model = None
+	if whisper is not None:
+		print(fg.BLUE, style.BRIGHT, "Loading Whisper model:", args.model, style.RESET_ALL)
+		whisper_model = whisper.load_model(args.model)
 
 	# Load existing wordlist into memory
 	wordset = set()
