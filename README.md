@@ -1,13 +1,10 @@
 <p align="center">
 <img alt="Pukeko" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Australasian_swamphen_%28Porphyrio_melanotus%29_Tiritiri_Matangi.jpg/1920px-Australasian_swamphen_%28Porphyrio_melanotus%29_Tiritiri_Matangi.jpg" />
 <p align="center">
-<a href="https://github.com/francesco1119/Pukeko/issues"><img alt="issues" src="https://img.shields.io/github/issues/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/network"><img alt="network" src="https://img.shields.io/github/forks/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/stargazers"><img alt="stargazers" src="https://img.shields.io/github/stars/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/commits/master"><img alt="last commit" src="https://img.shields.io/github/last-commit/francesco1119/Pukeko.svg"></a>
-<a href="https://github.com/francesco1119/Pukeko/graphs/commit-activity"><img alt="commit activity" src="https://img.shields.io/github/commit-activity/m/francesco1119/Pukeko.svg"></a>
-<a href="https://github.com/francesco1119/Pukeko"><img alt="repo size" src="https://img.shields.io/github/repo-size/francesco1119/Pukeko.svg"></a>
 <a href="https://github.com/francesco1119/Pukeko/watchers"><img alt="watchers" src="https://img.shields.io/github/watchers/francesco1119/Pukeko.svg"></a>
 <img alt="python" src="https://img.shields.io/badge/python-3.x-blue.svg">
 </p>
