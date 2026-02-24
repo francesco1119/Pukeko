@@ -43,6 +43,12 @@ pip install "pyxtxt[pdf,docx,presentation,spreadsheet,html,ocr]"
 |------|---------|------------|
 | [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) | Extract text from images (`.jpg`, `.png`, `.gif`, `.tif`) | Images will be skipped |
 | [ffmpeg](https://ffmpeg.org/) | Decode audio and video for Whisper | Audio/video will not work |
+| [Ollama](https://ollama.com/) | Run local LLM models | — |
+
+On Windows, install Ollama with winget:
+```
+winget install Ollama.Ollama
+```
 
 Pukeko will warn you at startup if any system tool is missing.
 
@@ -54,6 +60,8 @@ How to Install
 2) Install [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) for image support
 
 3) Install [ffmpeg](https://ffmpeg.org/download.html) for audio/video support
+
+4) Install [Ollama](https://ollama.com/) — on Windows: `winget install Ollama.Ollama`
 
 #### Troubleshooting:
 

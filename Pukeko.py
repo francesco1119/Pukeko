@@ -226,22 +226,29 @@ def main():
 				print(text)
 
 			new_words = set(text.split())
-			size_before = len(wordset)
+			truly_new = new_words - wordset
 			wordset.update(new_words)
-			added = len(wordset) - size_before
-			print(fg.YELLOW, style.BRIGHT, "+", added, style.RESET_ALL, filepath)
+			print(fg.YELLOW, style.BRIGHT, "+", len(truly_new), style.RESET_ALL, filepath)
 
 			if args.hotwords:
 				check_hotwords(text, filepath)
 
+			# Flush new words to disk immediately so Ctrl+C won't lose them
+			to_append = [w for w in truly_new if args.min <= len(w) <= args.max]
+			if to_append:
+				with open(output, "a", encoding='UTF8') as f:
+					for word in to_append:
+						f.write(word + "\n")
+
 		except Exception as e:
 			print("  Could not read the file", filepath, ":", e)
 
-	# Filter by length, sort, then write once — safely
-	filtered = sorted(
-		[w for w in wordset if args.min <= len(w) <= args.max],
-		key=len
-	)
+	# Re-read, sort, and rewrite for a clean final wordlist
+	existing = set()
+	if os.path.exists(output):
+		with open(output, "r", encoding='UTF8') as f:
+			existing = set(f.read().split())
+	filtered = sorted(existing, key=len)
 
 	with open(output, "w", encoding='UTF8') as f:
 		for word in filtered:
