@@ -7,16 +7,16 @@ import shutil
 import argparse
 import glob
 
-# Graceful imports — missing packages are reported by check_dependencies()
+# Graceful imports — missing packages are reported at startup by check_dependencies()
 try:
 	import magic
 except ImportError:
 	magic = None
 
 try:
-	import textract
+	from pyxtxt import xtxt as _xtxt
 except ImportError:
-	textract = None
+	_xtxt = None
 
 try:
 	import whisper
@@ -71,18 +71,18 @@ HOT_WORDS = [
 	"confidential", "-----BEGIN",
 ]
 
-# Handled by textract (documents, images)
-TEXTRACT_EXTENSIONS = (
-	'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html',
-	'.jpeg', '.jpg', '.json', '.log', '.msg', '.odt',
-	'.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif',
-	'.tiff', '.tsv', '.txt', '.xls', '.xlsx'
-)
-
 # Handled by Whisper (audio and video)
 AUDIO_VIDEO_EXTENSIONS = (
 	'.mp3', '.wav', '.ogg', '.flac', '.m4a', '.aac', '.wma',
 	'.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.webm', '.m4v'
+)
+
+# Handled by pyxtxt (documents and images)
+DOCUMENT_EXTENSIONS = (
+	'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html',
+	'.jpeg', '.jpg', '.json', '.log', '.msg', '.odt',
+	'.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif',
+	'.tiff', '.tsv', '.txt', '.xls', '.xlsx'
 )
 
 
@@ -91,10 +91,9 @@ def check_dependencies():
 	errors   = []
 	warnings = []
 
-	# Python packages
-	if magic    is None: errors.append("  python-magic    →  pip install python-magic")
-	if textract is None: errors.append("  textract        →  pip install textract")
-	if whisper  is None: errors.append("  openai-whisper  →  pip install openai-whisper")
+	if magic   is None: errors.append("  python-magic    →  pip install python-magic")
+	if _xtxt   is None: errors.append("  pyxtxt          →  pip install pyxtxt")
+	if whisper is None: errors.append("  openai-whisper  →  pip install openai-whisper")
 	if colorama is None: errors.append("  colorama        →  pip install colorama")
 
 	# System tools
@@ -108,7 +107,7 @@ def check_dependencies():
 		for e in errors:
 			print(e)
 		print("\n    Install all at once:")
-		print("    pip install python-magic textract openai-whisper colorama\n")
+		print("    pip install python-magic openai-whisper colorama pyxtxt\n")
 		sys.exit(1)
 
 	if warnings:
@@ -126,11 +125,10 @@ def extract_text(path, whisper_model):
 		print(fg.MAGENTA, style.BRIGHT, "  transcribing...", style.RESET_ALL, end='\r')
 		result = whisper_model.transcribe(path)
 		return result['text']
-	elif path.lower().endswith(TEXTRACT_EXTENSIONS):
-		if textract is None:
+	elif path.lower().endswith(DOCUMENT_EXTENSIONS):
+		if _xtxt is None:
 			return None
-		raw = textract.process(path)
-		return raw.strip().decode('utf-8')
+		return _xtxt(path)
 	elif magic is not None and "text" in magic.from_file(path, mime=True):
 		with open(path, "r", encoding='UTF8') as f:
 			return f.read()

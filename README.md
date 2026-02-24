@@ -23,13 +23,18 @@ Requirements
 | Package | Purpose | Install |
 |---------|---------|---------|
 | `python-magic` | Detect plain text files by content | `pip install python-magic` |
-| `textract` | Extract text from documents and images | `pip install textract` |
+| `pyxtxt` | Extract text from all document and image formats | `pip install pyxtxt` |
 | `openai-whisper` | Transcribe audio and video locally | `pip install openai-whisper` |
 | `colorama` | Colour terminal output on all platforms | `pip install colorama` |
 
 Install all at once:
 ```
-pip install python-magic textract openai-whisper colorama
+pip install python-magic openai-whisper colorama pyxtxt
+```
+
+For broader format coverage install pyxtxt with optional extras:
+```
+pip install "pyxtxt[pdf,docx,presentation,spreadsheet,html,ocr]"
 ```
 
 #### System tools (required for certain file types)
@@ -44,7 +49,7 @@ Pukeko will warn you at startup if any system tool is missing.
 How to Install
 ======
 
-1) `pip install python-magic textract openai-whisper colorama`
+1) `pip install python-magic openai-whisper colorama pyxtxt`
 
 2) Install [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) for image support
 
@@ -53,8 +58,8 @@ How to Install
 #### Troubleshooting:
 
 - **python-magic:** as if the World wasn't complicated enough, there are 2 'Magic' libraries. You can find the right one [here on GitHub](https://github.com/ahupp/python-magic) or [here on pypi.python.org](https://pypi.python.org/pypi/python-magic/)
-- **textract:** this too is not easy to install, you can find detailed documentation [here on GitHub](https://github.com/deanmalmgren/textract) or on the [official website](https://textract.readthedocs.io/en/stable/index.html) or on the [formal pypi.python.org](https://pypi.python.org/pypi/textract)
 - **openai-whisper:** runs fully locally — no API key, no internet, no token limits. See the [GitHub repo](https://github.com/openai/whisper) for details. A GPU is optional but speeds up transcription significantly.
+- **pyxtxt:** supports many formats out of the box; install with extras (`pyxtxt[ocr]`, `pyxtxt[pdf]`, etc.) for broader coverage. See the [pyxtxt PyPI page](https://pypi.org/project/pyxtxt/) for the full list.
 
 If the situation gets tragic open an issue and I will help you troubleshooting
 
@@ -63,7 +68,7 @@ How to use it
 
 Pukeko can currently parse:
 
-**Documents & images** (via `textract`): `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.msg', '.odt', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.xls', '.xlsx'`
+**Documents & images** (via `pyxtxt`): `'.csv', '.doc', '.docx', '.eml', '.epub', '.gif', '.htm', '.html', '.jpeg', '.jpg', '.json', '.log', '.msg', '.odt', '.pdf', '.png', '.pptx', '.ps', '.psv', '.rtf', '.tff', '.tif', '.tiff', '.tsv', '.txt', '.xls', '.xlsx'`
 
 **Audio & video** (via `openai-whisper`, transcribed locally): `'.mp3', '.wav', '.ogg', '.flac', '.m4a', '.aac', '.wma', '.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.webm', '.m4v'`
 
@@ -81,7 +86,7 @@ The `-model` flag lets you choose the Whisper model size for audio/video transcr
 
 Example: `python Pukeko.py -input /path/to/files -output wordlist.txt -model medium`
 
-Have a look at my YouTube presentatoin:
+Have a look at my YouTube presentation:
 
 [![IMAGE ALT TEXT HERE](https://github.com/francesco1119/Pukeko/blob/master/Capture.PNG?raw=true)](https://youtu.be/CD1zNNGDrUQ)
 
